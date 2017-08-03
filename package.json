@@ -1,0 +1,32 @@
+{
+  "name": "pallas.js",
+  "version": "0.0.1",
+  "description": "A object-orientated API framework",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "mocha --recursive -r ts-node/register test/**/*.ts",
+    "postinstall": "tsc"
+  },
+  "keywords": [
+    "API",
+    "Framework",
+  ],
+  "author": "Hidde Stokvis <hidde@neverhide.nl>",
+  "license": "ISC",
+  "dependencies": {
+    "@types/uuid": "^3.0.0",
+    "rxjs": "^5.4.2",
+    "tslint": "^5.5.0",
+    "typescript": "^2.4.1",
+    "universal-mixin": "^2.0.0",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.1",
+    "@types/mocha": "^2.2.41",
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2",
+    "ts-node": "^3.2.0",
+    "typings": "^2.1.1"
+  }
+}
