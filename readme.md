@@ -1,3 +1,5 @@
+Master ![Status of Master Branch](https://travis-ci.org/hiddestokvis/pallas.svg?branch=master)
+
 # Pallas
 
 An API Framework aimed at keeping things simple and object-orientated. It's a work in progress so still pretty unusable, but feel free to look around.
