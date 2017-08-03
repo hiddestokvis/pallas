@@ -14,8 +14,12 @@
   "author": "Hidde Stokvis <hidde@neverhide.nl>",
   "license": "ISC",
   "dependencies": {
+    "@types/reflect-metadata": "0.0.5",
+    "@types/sanitize-filename": "^1.1.28",
     "@types/uuid": "^3.0.0",
+    "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.2",
+    "sanitize-filename": "^1.6.1",
     "tslint": "^5.5.0",
     "typescript": "^2.4.1",
     "universal-mixin": "^2.0.0",
