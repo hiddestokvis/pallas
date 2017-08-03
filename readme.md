@@ -1,4 +1,4 @@
-Master ![Status of Master Branch](https://travis-ci.org/hiddestokvis/pallas.svg?branch=master)
+![Status of Master Branch](https://travis-ci.org/hiddestokvis/pallas.svg?branch=master)
 
 # Pallas
 
