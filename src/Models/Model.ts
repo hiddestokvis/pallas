@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import * as util from 'util';
 import { EventEmitter } from 'events';
+import { PrimaryColumn } from '../Datasource/ColumnDecorator';
 
 import {
   filterProperties,
@@ -15,7 +16,8 @@ interface IModel {
 
 @Notifier
 export class Model extends EventEmitter implements IModel {
-  private _id: string | number;
+  @PrimaryColumn()
+  public _id: string | number;
   public init: () => void;
 
   constructor() {

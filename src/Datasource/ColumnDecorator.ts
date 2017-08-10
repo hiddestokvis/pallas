@@ -6,9 +6,23 @@ function getColumns(model: Function): string[] {
 }
 
 function addColumn(model: Function, column: string): void {
-  const columns = getColumns(model);
+  const columns: string[] = getColumns(model);
   columns.push(column);
   Reflect.defineMetadata('columns', columns, model);
+}
+
+function removeColumn(model: Function, column: string): void {
+  const columns: string[] = getColumns(model).filter(item => item !== column);
+  Reflect.defineMetadata('columns', columns, model);
+}
+
+function hasPrimaryKey(model: Function) {
+  const primaryColumn: string | null = Reflect.getMetadata('PrimaryColumn', model);
+  return (typeof primaryColumn === 'string');
+}
+
+function getPrimaryColumn(model: Function): string {
+  return Reflect.getMetadata('PrimaryColumn', model);
 }
 
 export function Column(columnName?: string): Function {
@@ -31,13 +45,17 @@ export function PrimaryColumn(columnName?: string): Function {
     target: Object,
     propertyKey: string
   ): void => {
+    if (hasPrimaryKey(target.constructor)) {
+      removeColumn(target.constructor, getPrimaryColumn(target.constructor));
+    }
     const column: string = columnName || propertyKey;
-    Reflect.defineMetadata('PrimaryColumn', column, target.constructor);
-    Reflect.defineMetadata(`column_${getColumns(target.constructor).length + 1}`, {
+    const cIndex: string = `column_${getColumns(target.constructor).length + 1}`;
+    Reflect.defineMetadata('PrimaryColumn', cIndex, target.constructor);
+    Reflect.defineMetadata(cIndex, {
       propertyKey,
       columnName: sanitize(column),
       primaryKey: true,
     }, target.constructor);
-    addColumn(target.constructor, `column_${getColumns(target.constructor).length + 1}`);
+    addColumn(target.constructor, cIndex);
   }
 }
