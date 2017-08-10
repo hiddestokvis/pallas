@@ -16,7 +16,7 @@ interface IModel {
 
 @Notifier
 export class Model extends EventEmitter implements IModel {
-  @PrimaryColumn()
+  @PrimaryColumn('id')
   public _id: string | number;
   public init: () => void;
 
