@@ -21,16 +21,22 @@ export function Table(tableName?: string): any {
         return Reflect.getMetadata('TableName', constructor);
       }
 
-      get columns(): string[] {
+      get columns(): Object {
         const columns: string[] = Reflect.getMetadata('columns', constructor);
-        return <any[]> columns.map((columnId: string): any => {
-          return Reflect.getMetadata(columnId, constructor);
+        const returnColumns: Object = {};
+        columns.map((columnId: string): any => {
+          const column: any = Reflect.getMetadata(columnId, constructor);
+          if (column) {
+            Object.assign(returnColumns, {
+              [columnId]: column,
+            });
+          }
         });
+        return returnColumns;
       }
 
       get primaryKey(): string | null {
-        const columnId: string = Reflect.getMetadata('PrimaryColumn', constructor);
-        return columnId ? Reflect.getMetadata(columnId, constructor) : null;
+        return Reflect.getMetadata('PrimaryColumn', constructor) || null;
       }
     }
   }
