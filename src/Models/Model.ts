@@ -19,6 +19,10 @@ export class Model extends EventEmitter implements IModel {
   @PrimaryColumn('id')
   public _id: string | number;
   public init: () => void;
+  public tableName: string | null;
+  public columns: string[];
+  public primaryKey: string | null;
+  public columnId: string | null;
 
   constructor() {
     super();
