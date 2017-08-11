@@ -23,6 +23,7 @@ export class Model extends EventEmitter implements IModel {
   public columns: string[];
   public primaryKey: string | null;
   public columnId: string | null;
+  public joins: string[];
 
   constructor() {
     super();
