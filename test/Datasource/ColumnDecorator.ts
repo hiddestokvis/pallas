@@ -1,10 +1,12 @@
 import { expect } from 'chai';
 import 'mocha';
+import { Table } from '../../src/Datasource/TableDecorator';
 import { Column, PrimaryColumn } from '../../src/Datasource/ColumnDecorator';
 import { Model } from '../../src/Models/Model';
 import 'reflect-metadata';
 
 describe('Datasource decorators: Column Decorator', () => {
+  @Table('test_table')
   class M extends Model {
     @PrimaryColumn('pk')
     public _id: string | null;
@@ -29,15 +31,15 @@ describe('Datasource decorators: Column Decorator', () => {
   }
   it('Should have a list of attached columns', () => {
     const m: M = new M('test');
-    const columns: string[] = Reflect.getMetadata('columns', m.constructor);
-    expect(columns).to.be.an('array');
-    expect(columns).to.have.lengthOf(2);
+    const columns: any[] = m.columns;
+    expect(columns).to.be.an('Object');
+    expect(columns).to.have.keys('column_1', 'column_2');
   });
 
   it('Should have a primary key column', () => {
     const m: M = new M('test');
-    const primaryKey: string = Reflect.getMetadata('PrimaryColumn', m.constructor);
-    const column: any = Reflect.getMetadata(primaryKey, m.constructor);
+    const primaryKey: string = m.primaryKey;
+    const column: any = m.columns[primaryKey];
     expect(primaryKey).to.be.a('string');
     expect(column).to.have.all.keys('propertyKey', 'columnName', 'primaryKey');
     expect(column.primaryKey).to.equal(true);
@@ -47,8 +49,8 @@ describe('Datasource decorators: Column Decorator', () => {
 
   it('Should have a test column, attached to test_db', () => {
     const m: M = new M('test');
-    const columnIndex: string = Reflect.getMetadata('columns', m.constructor).pop();
-    const column: any = Reflect.getMetadata(columnIndex, m.constructor);
+    const columnIndex: string = Object.keys(m.columns).pop();
+    const column: any = m.columns[columnIndex];
     expect(column).to.have.all.keys('propertyKey', 'columnName', 'primaryKey');
     expect(column.primaryKey).to.equal(false);
     expect(column.propertyKey).to.equal('_test');
