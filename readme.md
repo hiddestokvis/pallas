@@ -21,7 +21,7 @@ class Books extends Model {
   @Column('title')
   private _title: string;
   @Column('author')
-  private _author: integer;
+  private _author: number;
   @Column('abstract')
   private _abstract: string;
 
@@ -44,11 +44,11 @@ class Books extends Model {
     this._title = title;
   }
 
-  get author(): integer {
+  get author(): number {
     return this._author;
   }
 
-  set author(author: integer) {
+  set author(author: number) {
     this._author = author;
   }
 
