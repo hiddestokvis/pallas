@@ -13,53 +13,53 @@ __creating a model__
 All models extend the base model which provides basic functionality.
 
 ``` TypeScript
-  import { Model } from 'pallas/Models';
-  import { Table, Column } from 'pallas/Datasource';
+import { Model } from 'pallas/Models';
+import { Table, Column } from 'pallas/Datasource';
 
-  @Table('books')
-  class Books extends Model {
-    @Column('title')
-    private _title: string;
-    @Column('author')
-    private _author: integer;
-    @Column('abstract')
-    private _abstract: string;
+@Table('books')
+class Books extends Model {
+  @Column('title')
+  private _title: string;
+  @Column('author')
+  private _author: integer;
+  @Column('abstract')
+  private _abstract: string;
 
-    constructor(
-      title,
-      author,
-      abstract
-    ) {
-      super();
-      this.title = title;
-      this.author = author;
-      this.abstract = abstract;
-    }
-
-    get title(): string {
-      return this._title;
-    }
-
-    set title(title: string) {
-      this._title = title;
-    }
-
-    get author(): integer {
-      return this._author;
-    }
-
-    set author(author: integer) {
-      this._author = author;
-    }
-
-    get abstract(): string {
-      return this._abstract;
-    }
-
-    set abstract(abstract: string) {
-      this._abstract = abstract;
-    }
+  constructor(
+    title,
+    author,
+    abstract
+  ) {
+    super();
+    this.title = title;
+    this.author = author;
+    this.abstract = abstract;
   }
+
+  get title(): string {
+    return this._title;
+  }
+
+  set title(title: string) {
+    this._title = title;
+  }
+
+  get author(): integer {
+    return this._author;
+  }
+
+  set author(author: integer) {
+    this._author = author;
+  }
+
+  get abstract(): string {
+    return this._abstract;
+  }
+
+  set abstract(abstract: string) {
+    this._abstract = abstract;
+  }
+}
 ```
 
 ## LICENSE
