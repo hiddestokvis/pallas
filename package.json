@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha --recursive -r ts-node/register test/**/*.ts",
-    "build": "tsc -p tsconfig.build.json && npm run copypackage && npm dist",
+    "build": "tsc -p tsconfig.build.json && npm run copypackage",
     "copypackage": "cp -rf package.json dist",
     "dist": "cd dist && npm publish"
   },
