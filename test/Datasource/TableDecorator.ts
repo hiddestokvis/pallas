@@ -9,7 +9,6 @@ describe('Datasource decorators: Table Decorator', () => {
   class M extends Model {
     public _id: string | null;
     private _test: string | null;
-    public abc: Function;
 
     constructor(
       test
@@ -28,7 +27,7 @@ describe('Datasource decorators: Table Decorator', () => {
   }
   it('Should add a table name to a model', () => {
     const m: M = new M('test');
-    const tableName: string = Reflect.getMetadata('TableName', m.constructor);
+    const tableName: string = m.tableName;
     expect(tableName).to.be.a('string');
     expect(tableName).to.equal('test_table');
   });
