@@ -4,6 +4,64 @@
 
 An API Framework aimed at keeping things simple and object-orientated. It's a work in progress so still pretty unusable, but feel free to look around.
 
+# Models
+
+Models are the objects at the heart of Pallas. Models can follow the structure of your database, but they can also be completely independent. Pallas is created with your business logic in mind, not your database structure. You are free to model your models whatever way you want and Pallas does offer basic database helpers, but feel free to implement a different persistence strategy as needed.
+
+__creating a model__
+
+All models extend the base model which provides basic functionality.
+
+```
+  import { Model } from 'pallas/Models';
+  import { Table, Column } from 'pallas/Datasource';
+
+  @Table('books')
+  class Books extends Model {
+    @Column('title')
+    private _title: string;
+    @Column('author')
+    private _author: integer;
+    @Column('abstract')
+    private _abstract: string;
+
+    constructor(
+      title,
+      author,
+      abstract
+    ) {
+      super();
+      this.title = title;
+      this.author = author;
+      this.abstract = abstract;
+    }
+
+    get title(): string {
+      return this._title;
+    }
+
+    set title(title: string) {
+      this._title = title;
+    }
+
+    get author(): integer {
+      return this._author;
+    }
+
+    set author(author: integer) {
+      this._author = author;
+    }
+
+    get abstract(): string {
+      return this._abstract;
+    }
+
+    set abstract(abstract: string) {
+      this._abstract = abstract;
+    }
+  }
+```
+
 ## LICENSE
 
 MIT License
