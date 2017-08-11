@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha --recursive -r ts-node/register test/**/*.ts",
-    "prepublish": "tsc -p tsconfig.build.json"
+    "build": "tsc -p tsconfig.build.json && npm run copypackage && npm dist",
+    "copypackage": "cp -rf package.json dist",
+    "dist": "cd dist && npm publish"
   },
   "keywords": [
     "API",
