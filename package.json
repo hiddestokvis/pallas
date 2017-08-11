@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha --recursive -r ts-node/register test/**/*.ts",
-    "postinstall": "tsc"
+    "prepublish": "tsc"
   },
   "keywords": [
     "API",
