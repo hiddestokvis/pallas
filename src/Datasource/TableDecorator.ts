@@ -35,6 +35,20 @@ export function Table(tableName?: string): any {
         return returnColumns;
       }
 
+      get joins(): Object {
+        const joins: string[] = Reflect.getMetadata('joins', constructor);
+        const returnJoins: Object = {};
+        joins.map((joinId: string): any => {
+          const join: any = Reflect.getMetadata(joinId, constructor);
+          if (join) {
+            Object.assign(returnJoins, {
+              [joinId]: join,
+            });
+          }
+        });
+        return returnJoins;
+      }
+
       get primaryKey(): string | null {
         return Reflect.getMetadata('PrimaryColumn', constructor) || null;
       }

@@ -19,40 +19,41 @@ function join(
   target: Object,
   propertyKey: string,
   type: string,
-  model: Function,
   foreignKey?: string
 ): void {
+  const baseModel = Reflect.getMetadata('design:type', target, propertyKey);
   Reflect.defineMetadata(`join_${getJoins(target.constructor).length + 1}`, {
     propertyKey,
-    foreignKey: foreignKey || getForeignKey(model),
-    model,
+    foreignKey: foreignKey || getForeignKey(baseModel.prototype.constructor),
+    model: baseModel.prototype.constructor,
+    type,
   }, target.constructor);
   addJoin(target.constructor, `join_${getJoins(target.constructor).length + 1}`);
 }
 
-export function LeftJoin(model: Function, foreignKey?: string): Function {
+export function LeftJoin(foreignKey?: string): Function {
   return (
     target: Object,
     propertyKey: string
   ): void => {
-    join(target, propertyKey, 'left', model, foreignKey);
+    join(target, propertyKey, 'left', foreignKey);
   }
 }
 
-export function InnerJoin(model: Function, foreignKey?: string): Function {
+export function InnerJoin(foreignKey?: string): Function {
   return (
     target: Object,
     propertyKey: string
   ): void => {
-    join(target, propertyKey, 'inner', model, foreignKey);
+    join(target, propertyKey, 'inner', foreignKey);
   }
 }
 
-export function RightJoin(model: Function, foreignKey?: string): Function {
+export function RightJoin(foreignKey?: string): Function {
   return (
     target: Object,
     propertyKey: string
   ): void => {
-    join(target, propertyKey, 'right', model, foreignKey);
+    join(target, propertyKey, 'right', foreignKey);
   }
 }
