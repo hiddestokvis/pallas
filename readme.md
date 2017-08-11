@@ -13,8 +13,8 @@ __creating a model__
 All models extend the base model which provides basic functionality.
 
 ``` TypeScript
-import { Model } from 'pallas/Models';
-import { Table, Column } from 'pallas/Datasource';
+import { Model } from 'pallas.js/Models';
+import { Table, Column } from 'pallas.js/Datasource';
 
 @Table('books')
 class Books extends Model {
