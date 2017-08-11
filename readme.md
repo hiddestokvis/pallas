@@ -12,7 +12,7 @@ __creating a model__
 
 All models extend the base model which provides basic functionality.
 
-```
+``` TypeScript
   import { Model } from 'pallas/Models';
   import { Table, Column } from 'pallas/Datasource';
 
