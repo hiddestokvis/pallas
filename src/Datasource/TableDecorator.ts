@@ -42,6 +42,10 @@ export function Table(tableName?: string): any {
       static get primaryKey(): string | null {
         return Reflect.getMetadata('PrimaryColumn', constructor) || null;
       }
+
+      static get schema(): {} {
+        return Reflect.getMetadata('Schema', constructor) || null;
+      }
     }
   }
 }
