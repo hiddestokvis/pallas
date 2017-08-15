@@ -27,7 +27,7 @@ describe('Datasource decorators: Table Decorator', () => {
   }
   it('Should add a table name to a model', () => {
     const m: M = new M('test');
-    const tableName: string = m.tableName;
+    const tableName: string = M.tableName;
     expect(tableName).to.be.a('string');
     expect(tableName).to.equal('test_table');
   });

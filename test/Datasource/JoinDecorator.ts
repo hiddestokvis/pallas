@@ -78,7 +78,7 @@ describe('Datasource decorators: Join Decorator', () => {
       expect(book.author).to.be.an.instanceOf(Author);
     });
     it('should hold join information about the Author', () => {
-      const join: any = book.joins['join_1'];
+      const join: any = Book.joins['join_1'];
       expect(join).to.have.keys('propertyKey', 'foreignKey', 'model', 'type');
       expect(join.propertyKey).to.equal('_author');
       expect(join.foreignKey).to.equal('column_1');

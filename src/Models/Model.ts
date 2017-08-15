@@ -19,11 +19,12 @@ export class Model extends EventEmitter implements IModel {
   @PrimaryColumn('id')
   public _id: string | number;
   public init: () => void;
-  public tableName: string | null;
-  public columns: string[];
-  public primaryKey: string | null;
-  public columnId: string | null;
-  public joins: string[];
+  public static tableName: string;
+  public static columns: string[];
+  public static primaryKey: string;
+  public static columnId: string;
+  public static joins: string[];
+  public static schema: any;
 
   constructor() {
     super();
